@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <script src="index.js"></script> -->
+    <title>Document</title>
+    <script src="manage_upload.js"></script>
+    <script>
+        var selectionID = 0
+        var ids_of_shows = [0, 1, 2]
+        
+        function dynamically_hide()
+        {
+            for(var i = 0; i < ids_of_shows.length; i ++)
+            {
+                if (ids_of_shows[i] == selectionID) {
+                    document.getElementById(`${ids_of_shows[i]}`).style.display = 'block';
+                } if (ids_of_shows[i] != selectionID) {
+                    document.getElementById(`${ids_of_shows[i]}`).style.display = 'none';
+                }
+            }
+        }
+
+        function max(x, y)
+        {
+            if (x > y) {
+                return x;
+            }
+            return y;
+        }
+
+        function execute_api()
+        {
+
+        }
+        
+        function increase_id()
+        {
+            selectionID += 1;
+            dynamically_hide();
+        }
+        
+        function decrease_id()
+        {
+            selectionID = max(0, selectionID - 1);
+            dynamically_hide();
+        }</script>
+    <style>
+        html,
+        body {
+        margin: 0;
+        padding: 0;
+        }
+
+        .background {
+            height:100vh;
+            width:100vw;
+            text-align: center;
+            background: linear-gradient(rgb(114, 171, 235),white);
+            color: white;
+            font-size: 30px;
+            margin:0;
+        }
+        
+        @font-face {
+            font-family: "Nexa";
+            src: url("assets/fonts/Nexa-Bold.woff2") format("woff2");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "NexaBook";
+            src: url("assets/fonts/Nexa-Book.woff2") format("woff2")
+        }
+
+        .nexa {
+            font-family: 'Nexa';
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .nexa2 {
+            font-family: 'Nexabook';
+            font-weight: 100;
+            letter-spacing: 0.05em;
+        }
+
+        .header {
+            padding-top: 1%;
+            padding-left:2%;
+            background-color:white;
+            height:10%;
+            outline-width:2%;
+            outline-color:black;
+            outline-style:solid;
+            text-align: left;
+        }
+
+        .selecting-box {
+            background:linear-gradient(rgb(255, 255, 255),rgb(138, 160, 165));
+            /* position:relative; */
+            width:40%;
+            height:40%;
+            margin:auto;
+            margin-top:6%;
+            align-content: center;
+            border-radius: 30px;
+            outline-width:1%;
+            outline-color:black;
+            outline-style:solid;
+        }
+        
+        .next {
+            color: black;
+            font-size: 60%;
+            background-color: rgb(182, 215, 219);
+            height: 10%;
+            width: 20%;
+            border-radius: 3px;
+            font-family:'Nexabook';
+        }
+
+        .nextgrayed {
+            color: rgba(0, 0, 0, 0.265);
+            font-size: 60%;
+            background-color: rgba(182, 215, 219, 0.114);
+            height: 10%;
+            width: 20%;
+            border-radius: 3px;
+            font-family:'Nexabook';
+        }
+
+        .upload-button {
+            position: relative;
+            color:black;
+            font-family: 'Nexabook';
+            font-size:60%;
+            top:6%;
+        }
+
+        .upload-files {
+            position: relative;
+            margin:auto;
+            margin-top:5%;
+            background-color: rgb(182, 215, 219);
+            width:25%;
+            height:15%;
+            border-radius: 10px;
+            outline-width:2px;
+            outline-color:black;
+            outline-style:solid;
+        }
+    </style>
+    <div class="background">
+        <div class="header">
+            <a class="nexa" style="font-size:100%;color:black;">PUER</a>
+        </div>
+        <div class="selecting-box">
+            <h1 class="nexa2" style="color:black;margin-top:40px;font-size:80%">Upload Files</h1>
+            <div id="0" style="position:relative;width:100%;height:100%">
+                <input id="back" style="position:relative;top:65%;right:25%;" class="nextgrayed" type="button" value="Back" onclick="decrease_id()">
+                <input id="next" style="position:relative;top:65%;left:25%" class="next" type="button" value="Next" onclick="increase_id()">
+                <div class="upload-files">
+                    <form id='adat-form' enctype='multipart/form-data' onchange="upload_adat_file()">
+                        <label class="upload-button" for="adat_input">Upload Adat</label>
+                        <input type="file" style="display:none" id="adat_input" name="adat_input">
+                    </form>
+                </div>
+            </div>
+            <div id="1" style="position:relative;width:100%;height:100%;display: none;">
+                <input id="back" style="position:relative;top:65%;right:25%" class="next" type="button" value="Back" onclick="decrease_id()">
+                <input id="next" style="position:relative;top:65%;left:25%;" class="next" type="button" value="Next" onclick="increase_id()">
+            </div>
+            <div id="2" style="position:relative;width:100%;height:100%;display: none;">
+                <input id="back" style="position:relative;top:65%;right:25%" class="next" type="button" value="Back" onclick="decrease_id()">
+                <input id="next" style="position:relative;top:65%;left:25%;" class="next" type="button" value="Finish" onclick="execute_api()">
+            </div>
+            
+        </div>
+    </div>
+</head>
+<body>
+    
+</body>
+</html>
